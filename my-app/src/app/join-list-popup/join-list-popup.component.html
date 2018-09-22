@@ -1,0 +1,20 @@
+<div class="text-center">
+  Please enter playlist pin code
+  <div>
+
+    <mat-form-field >
+      <input matInput type="text" placeholder="PIN COD" [(ngModel)]="value" >
+      <button mat-button *ngIf="value"  matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>
+            <i class="material-icons">
+                close
+                </i>
+        </mat-icon>
+      </button>
+    </mat-form-field>
+
+  </div>
+  <div>
+    <button class="join-list-btn" mat-stroked-button [color]="'my-primary'" (click)="joinList()">JOIN</button>
+  </div>
+</div>

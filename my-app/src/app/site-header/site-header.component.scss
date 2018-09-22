@@ -1,0 +1,22 @@
+
+.join-list-btn{
+    bottom: 8px;   
+    .mat-button-wrapper{
+        color: white !important;
+    }
+}
+
+
+.mat-toolbar{
+    box-shadow: 0.3px 0.3px 6px 0px;
+    box-shadow: black;
+    background-color: #F0F2F3;
+    margin-top: 10px;
+    margin-bottom: 25px;
+
+    // background-color: transparent;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row{
+    height: 80px;
+}

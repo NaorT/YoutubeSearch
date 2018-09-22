@@ -1,0 +1,23 @@
+<mat-toolbar color="white">
+  <mat-toolbar-row class="text-center">
+    <span>Tube Site</span>
+    <span class="col-xs-4"></span>
+    
+    <mat-form-field class="col-xs-2">
+        <input matInput type="text" placeholder="Search video" [(ngModel)]="value" (keyup)="searchVid$.next($event.target.value)">
+        <button mat-button *ngIf="value"  matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>
+              <i class="material-icons">
+                  close
+                  </i>
+          </mat-icon>
+        </button>
+      </mat-form-field>
+
+    <span class="col-xs-4"></span>
+
+    <mat-icon class="example-icon">
+      <button class="join-list-btn" mat-stroked-button [color]="'my-primary'" (click)="openDialog()">JOIN LIST</button>
+    </mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>

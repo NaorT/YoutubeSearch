@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import "./assets/ bootstrap-sass/variables";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+$primary-red :#C01A1A;
+$white :white;
+
+app-site-header{
+    .mat-form-field ,span{
+        color: $primary-red;
+    }
+}
+.join-list-btn{
+    bottom: 8px;   
+    &:hover{
+        .mat-button-wrapper{
+          color: white !important;
+        }
+    }
+}
+.mat-my-primary {
+  transition: all .5s ease;
+    color: $primary-red;
+    &:hover{
+        background-color: $primary-red;
+        color: $white;
+        border-color: $white;
+        
+    }
+}
+.playlist-container{
+    box-shadow: 0.3px 0.3px 6px 0px;
+    background-color: #F0F2F3;
+    .mat-tab-label {
+        opacity: 1;
+        color: black !important;
+        border: solid #262D33;
+        border-width: 0px 1px 0px 0px;
+        background-image: linear-gradient(#E7E8EA, #EFF0F2);
+      
+        &:last-child{
+            min-width: 50px;
+        }
+    
+        &.mat-tab-label-active{
+            transition: background-color 0.5s linear;
+
+        background-image: none;
+            background-color: $primary-red!important;
+            color: white !important;
+        }
+    
+        
+    }
+    
+    mat-tab-header.mat-tab-header{
+        background-color: #F0F2F3;
+    }
+    
+    .mat-tab-list{
+        height: 55px;
+    }
+    
+    .mat-tab-header{
+        border-bottom: 0px;
+    }
+    .tab-header{
+        height: 15px;
+        background-color: #F0F2F3;
+    
+    }
+    .tab-line{
+        height: 7px;
+        background-color: $primary-red;
+    }
+    
+    .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+        background: $primary-red;
+        height: 10px;
+        box-shadow: -1px 0px 0px 0px #262D33;
+        border: solid #262D33;
+        border-width: 0px 1px 0px 0px;
+      } 
+}
+
+mat-horizontal-stepper.mat-stepper-horizontal{
+    background-color: #F0F2F3;
+
+    span.mat-step-icon-content.ng-star-inserted{
+        color: white;
+    }
+    .mat-step-icon{
+        background-color: $primary-red;
+    }
+
+    mat-radio-button{
+        margin-top: 10px;
+    }
+    .mat-radio-button.mat-warn .mat-radio-inner-circle{
+        background-color: $primary-red;
+    }
+    
+}

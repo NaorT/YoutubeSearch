@@ -1,0 +1,59 @@
+<!-- <button mat-raised-button (click)="isEditable = !isEditable">
+    {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+  </button>
+   -->
+<div class="add-list-form-container">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step  [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your Details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Your Name" formControlName="firstCtrl" [(ngModel)]="playlist.created_by" >
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input matInput placeholder="Company" formControlName="firstCtrl" [(ngModel)]="playlist.company" >
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out Playlist Details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="secondCtrl" required [(ngModel)]="playlist.name" >
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+          <input matInput placeholder="Genre" formControlName="secondCtrl" required [(ngModel)]="playlist.genre" >
+        </mat-form-field>
+        <br />
+
+        Is Editeable for everyone ?
+        <br />
+
+        <mat-radio-group [(ngModel)]="checkBox" formControlName="secondCtrl">
+          <mat-radio-button color="warn"   value="yes">YES</mat-radio-button>
+          <br />
+          <mat-radio-button color="warn"  value="no">No</mat-radio-button>
+        </mat-radio-group>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button (click)="savePlaylist(stepper)">Done!</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
