@@ -5,16 +5,10 @@
           (searchVideo)="searchVideos($event)"
           class="col-xs-12"></app-site-header>
     </div>
-  
+    <div *ngIf="searchResults">
+      <app-search-results [searchResults]="searchResults"></app-search-results>
+    </div>
     <div class="row">
       <app-play-lists class="col-xs-12"></app-play-lists>
     </div>
-  </div>
-  
-  <div *ngIf="vids">
-  <youtube-player
-      [videoId]="vids[0].id"
-      (ready)="savePlayer($event)"
-      (change)="onStateChange($event)"
-    ></youtube-player>
   </div>

@@ -1,14 +1,15 @@
 <div class="playlist-container" *ngIf="playlists">
   <mat-tab-group selectedIndex="2">
     <mat-tab  *ngFor="let tab of playlists | async" [label]="tab.name">
-      <div class="tab-contianer">
+      <div></div>
+      <div class="tab-contianer" >
         <div class="tab-header">
               <div class="tab-line"></div>
         </div>
       </div>
-      Contents for {{tab.name}} tab
-      <app-play-list-item [playlist]="tab"></app-play-list-item>
-
+      
+      <app-play-list-item  [playlist]="tab"></app-play-list-item>
+    
     </mat-tab>
 
     <mat-tab   label="+">

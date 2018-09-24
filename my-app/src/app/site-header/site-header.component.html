@@ -5,7 +5,7 @@
     
     <mat-form-field class="col-xs-2">
         <input matInput type="text" placeholder="Search video" [(ngModel)]="value" (keyup)="searchVid$.next($event.target.value)">
-        <button mat-button *ngIf="value"  matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <button mat-button *ngIf="value"  matSuffix mat-icon-button aria-label="Clear" (click)="value=''; searchVid$.next('')">
           <mat-icon>
               <i class="material-icons">
                   close

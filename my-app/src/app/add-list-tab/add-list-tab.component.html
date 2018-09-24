@@ -1,7 +1,3 @@
-<!-- <button mat-raised-button (click)="isEditable = !isEditable">
-    {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-  </button>
-   -->
 <div class="add-list-form-container">
   <mat-horizontal-stepper linear #stepper>
     <mat-step  [editable]="isEditable">
@@ -12,7 +8,7 @@
         </mat-form-field>
         <br />
         <mat-form-field>
-          <input matInput placeholder="Company" formControlName="firstCtrl" [(ngModel)]="playlist.company" >
+          <input matInput placeholder="Organization" formControlName="firstCtrl" [(ngModel)]="playlist.organization" >
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -50,6 +46,25 @@
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       You are now done.
+      <div class="add-songs-container row">
+      <div class="add-songs-box text-center col-xs-4 col-xs-offset-4" dndDropzone
+      (dndDragover)="onDragover($event)"
+      (dndDrop)="onDrop($event)">
+   
+   
+      <div  class="drag-active">
+         <i class="material-icons">
+             add_circle
+             </i>
+      </div>>
+
+        Now just drag your favorite videos and let the fun begin!
+        <div *ngFor="let video of playlist.videos">
+          {{video.snippet.title}}
+        </div>
+
+      </div>
+    </div>
       <div>
         <button mat-button (click)="savePlaylist(stepper)">Done!</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
