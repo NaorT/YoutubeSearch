@@ -1,14 +1,15 @@
 import { Component, OnInit, enableProdMode } from '@angular/core';
-import { YoutubeService } from '../youtube.service';
-import { UserService } from '../user.service';
-import { PlaylistService } from '../playlist.service';
-import * as M from '../models';
+import { YoutubeService } from '../../services/youtube/youtube.service';
+import { UserService } from '../../services/user/user.service';
+import { PlaylistService } from '../../services/playlist/playlist.service';
+import * as M from '../../models';
 
 @Component({
   selector: 'app-app-container',
   templateUrl: './app-container.component.html',
   styleUrls: ['./app-container.component.scss']
 })
+
 export class AppContainerComponent implements OnInit {
   searchResults: M.YoutubeSearchResult[];
   player: YT.Player;

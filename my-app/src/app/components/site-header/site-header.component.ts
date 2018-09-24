@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import { JoinListPopupComponent } from '../join-list-popup/join-list-popup.component';

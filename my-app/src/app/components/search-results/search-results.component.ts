@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as M from '../models';
-import { DndDropEvent } from 'ngx-drag-drop';
+import * as M from '../../models';
 
 @Component({
   selector:  'app-search-results',

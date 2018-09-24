@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as M from '../models';
-import { UserService } from '../user.service';
-import { PlaylistService } from '../playlist.service';
+import * as M from '../../models';
+import { UserService } from '../../services/user/user.service';
+import { PlaylistService } from '../../services/playlist/playlist.service';
 import { Observable } from 'rxjs';
-import { DragAndDropService } from '../services/drag-and-drop.service';
+import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
 
 @Component({
   selector: 'app-search-results-item',
