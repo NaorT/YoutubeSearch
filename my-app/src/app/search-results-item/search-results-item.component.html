@@ -1,3 +1,44 @@
-<p>
-  search-results-item works!
-</p>
+<div   
+[dndDraggable]="draggable.data"
+[dndEffectAllowed]="draggable.effectAllowed"
+[dndDisableIf]="draggable.disable">
+
+<ngx-flip [flip]="flipDiv">
+  <div front>
+    <mat-card>
+        <img [src]="video.snippet.thumbnails.medium.url" mat-card-image alt="Photo of a Shiba Inu">
+      <mat-card-content style="white-space: normal;">
+        {{video.snippet.title}}
+      </mat-card-content>
+      <mat-card-actions>
+        <i class="material-icons info-icon" (click)="flipCard()">
+          info
+        </i>
+        <button mat-fab color="warn" [matMenuTriggerFor]="menu">ADD</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let list of playlists | async" (click)="addToList(list)">{{list.name}}</button>
+        </mat-menu>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div back>
+    <mat-card class="back-card">
+
+      <mat-card-content class="back-card-content"  >
+        <div class="half-card-container" >
+          <img [src]="video.snippet.thumbnails.medium.url" alt="Photo of a Shiba Inu">
+        <div class="back-side-desc-container">
+          {{video.snippet.description| slice:0:190}}
+        </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-fab color="warn" [matMenuTriggerFor]="menu">ADD</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let list of playlists | async" (click)="addToList(list)">{{list.name}}</button>
+        </mat-menu>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ngx-flip>
+</div>

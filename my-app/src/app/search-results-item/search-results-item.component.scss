@@ -1,0 +1,67 @@
+ngx-flip ,mat-card{
+    height: 270px;
+    width: 250px;
+    margin-right: 20px;
+    box-shadow: 4px 5px 9px;
+
+    youtube-player{
+        top: -24px;
+        position: relative;
+
+    }
+}
+
+mat-card-content.mat-card-content {
+    height: 40px;
+}
+button.mat-fab.mat-warn {
+    position: relative;
+    bottom: 20px;
+    left: 150px;
+}
+i.material-icons {
+    &.info-icon{
+        cursor: pointer;
+        position: relative;
+        bottom: -10px;
+        left: -4px;
+    }
+}
+
+.back-card{
+    padding: 0px;
+    margin: 0px;
+    white-space: normal;
+    mat-card-content.mat-card-content{
+        height: 80% !important;
+    }
+    .half-card-container{
+        width:100%;
+        height:15%;
+        img{
+            position: absoulte;
+            width: 100%;
+            height: 75%;
+            opacity: 0.4;;
+        }
+        &:first-child{
+            height:85%;
+        }
+
+    }
+    .back-side-desc-container{
+        white-space: normal;
+        word-break: break-word;
+        position: relative;
+        bottom: 130px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    button.mat-fab.mat-warn {
+        position: relative;
+        bottom: 65px;
+        left: 115px;
+    }
+}
+
+

@@ -1,0 +1,31 @@
+.search-result-container{
+    box-shadow: 0.3px 0.3px 6px 0px;
+    box-shadow: black;
+    background-color: #F0F2F3;
+    margin-bottom: 25px;
+    height:315px;
+    padding-top: 15px;
+    animation-name: open-search-results;
+    animation-duration: 500ms;
+
+}
+drag-scroll{
+    height:315px;
+}
+.drag-scroll-content{
+    background-color: red;
+    &:first-child{
+        .card-container{
+            margin-left: 150px
+        }
+    }
+}
+
+@keyframes open-search-results {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 315px;
+    }
+}

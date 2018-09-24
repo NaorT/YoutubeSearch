@@ -22,7 +22,7 @@ export class FirebaseHandlerService {
   public setItem(collectionName: M.CollectionName, item: M.Playlist): void {
     this.asf.doc(`${collectionName}/${item.id}`).set(item);
   }
-  public editUserToListeners( playlistId: string, newPlayList: M.Playlist) {
+  public editPlaylist( playlistId: string, newPlayList: M.Playlist) {
       this.asf.doc(`playlist/${playlistId}`).set(newPlayList, {merge: true});
   }
   public deleteList(listId: string) {

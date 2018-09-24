@@ -15,10 +15,9 @@ import { MatStepper } from '@angular/material';
 export class AddListTabComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  isEditable = false;
+  isEditable = true;
   playlist: M.Playlist;
   checkBox: string;
-  subscriber:Observable<any>;
   constructor(
     private _formBuilder: FormBuilder,
     private playlistService: PlaylistService,
@@ -44,7 +43,7 @@ export class AddListTabComponent implements OnInit {
       id: undefined,
       created_at: undefined,
       created_by: undefined,
-      company: undefined,
+      organization: undefined,
       name: undefined,
       genre: undefined,
       isEditeable: true,
@@ -74,6 +73,12 @@ export class AddListTabComponent implements OnInit {
           stepper.reset();
         }
       });
+  }
+
+  onDragover($event) {
+  }
+  onDrop($event) {
+    this.playlistService.addVideoToLocallist(this.playlist , $event.data);
   }
 
 }

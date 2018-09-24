@@ -13,14 +13,14 @@ import { PlaylistService } from '../playlist.service';
 export class PlayListsComponent implements OnInit {
   selected = new FormControl(0);
   playlists: Observable<M.Playlist[]>;
-
   constructor(
     private playlistService: PlaylistService,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
     this.getPlaylist();
+
   }
   private getPlaylist(): void {
     this.playlists = this.playlistService.getItemObserver(
@@ -28,6 +28,4 @@ export class PlayListsComponent implements OnInit {
       this.userService.getCurrentUser().id
     );
   }
-
-
 }

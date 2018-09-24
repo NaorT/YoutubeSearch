@@ -1,3 +1,9 @@
-<p>
-  search-results works!
-</p>
+<div class="col-xs-12 search-result-container">
+  <div class="row">
+    <drag-scroll [drag-scroll-y-disabled]="true"	>
+      <div drag-scroll-item *ngFor="let video of searchResults; let index">
+      
+        <app-search-results-item [video]="video"></app-search-results-item>
+      </div>  </drag-scroll>    
+  </div>
+</div>

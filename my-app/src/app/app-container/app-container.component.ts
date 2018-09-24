@@ -1,9 +1,8 @@
 import { Component, OnInit, enableProdMode } from '@angular/core';
 import { YoutubeService } from '../youtube.service';
-import { GoogleApiService } from 'ng-gapi';
 import { UserService } from '../user.service';
 import { PlaylistService } from '../playlist.service';
-
+import * as M from '../models';
 
 @Component({
   selector: 'app-app-container',
@@ -11,7 +10,7 @@ import { PlaylistService } from '../playlist.service';
   styleUrls: ['./app-container.component.scss']
 })
 export class AppContainerComponent implements OnInit {
-  vids: any;
+  searchResults: M.YoutubeSearchResult[];
   player: YT.Player;
 
   constructor(
@@ -31,16 +30,13 @@ export class AppContainerComponent implements OnInit {
   }
 
   searchVideos($event) {
-    this.youtubeService.searchVideos($event).subscribe((vid: any) => {
-    this.vids = vid;
-    });
-  }
-  savePlayer(player: any) {
-    this.player = player;
-
-    console.log(player);
-  }
-  onStateChange($event) {
-    console.log($event);
+    if ($event) {
+        this.youtubeService.searchVideos($event).subscribe((results: M.YoutubeSearchResult[]) => {
+          console.log(results['items']);
+          this.searchResults = results['items'];
+        });
+    } else {
+      this.searchResults = undefined;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SiteHeaderComponent } from './site-header/site-header.component';
@@ -18,6 +19,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { VideoSerachResultsComponent } from './video-serach-results/video-serach-results.component';
@@ -27,16 +29,18 @@ import { JoinListPopupComponent } from './join-list-popup/join-list-popup.compon
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FlipModule } from 'ngx-Flip';
 
 
 import { AddListTabComponent } from './add-list-tab/add-list-tab.component';
 import { AppContainerComponent } from './app-container/app-container.component';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { PlayListItemComponent } from './play-list-item/play-list-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchResultsItemComponent } from './search-results-item/search-results-item.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { DndModule } from 'ngx-drag-drop';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,8 @@ import { SearchResultsItemComponent } from './search-results-item/search-results
     SearchResultsItemComponent
   ],
   imports: [
+    YoutubePlayerModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserModule,
@@ -60,7 +66,10 @@ import { SearchResultsItemComponent } from './search-results-item/search-results
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
-    YoutubePlayerModule,
+    DragScrollModule,
+    FlipModule,
+    DndModule,
+
     // angular matireal
     MatButtonModule,
     MatCheckboxModule,
@@ -72,7 +81,8 @@ import { SearchResultsItemComponent } from './search-results-item/search-results
     MatDialogModule,
     MatStepperModule,
     MatRadioModule,
-
+    MatCardModule,
+    MatMenuModule,
   ],
   entryComponents: [
     JoinListPopupComponent,
