@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FirebaseHandlerService } from './firebase-handler.service';
+import { FirebaseHandlerService } from '../firebase-handler/firebase-handler.service';
 import { Observable } from 'rxjs';
-import * as M from './models';
+import * as M from '../../models';
 
 @Injectable({
   providedIn: 'root'

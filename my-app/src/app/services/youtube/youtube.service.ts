@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NetService } from './net.service';
+import { NetService } from '../net/net.service';
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class YoutubeService {
   max_results = 10;
