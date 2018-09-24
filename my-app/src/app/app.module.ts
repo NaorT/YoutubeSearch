@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SiteHeaderComponent } from './site-header/site-header.component';
-import { PlayListsComponent } from './play-lists/play-lists.component';
+import { SiteHeaderComponent } from './components/site-header/site-header.component';
+import { PlayListsComponent } from './components/play-lists/play-lists.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -22,8 +22,8 @@ import { MatRadioModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { VideoSerachResultsComponent } from './video-serach-results/video-serach-results.component';
-import { JoinListPopupComponent } from './join-list-popup/join-list-popup.component';
+import { VideoSerachResultsComponent } from './components/video-serach-results/video-serach-results.component';
+import { JoinListPopupComponent } from './components/join-list-popup/join-list-popup.component';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -32,13 +32,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FlipModule } from 'ngx-Flip';
 
 
-import { AddListTabComponent } from './add-list-tab/add-list-tab.component';
-import { AppContainerComponent } from './app-container/app-container.component';
+import { AddListTabComponent } from './components/add-list-tab/add-list-tab.component';
+import { AppContainerComponent } from './views/app-container/app-container.component';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
-import { PlayListItemComponent } from './play-list-item/play-list-item.component';
+import { PlayListItemComponent } from './components/play-list-item/play-list-item.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchResultsComponent } from './search-results/search-results.component';
-import { SearchResultsItemComponent } from './search-results-item/search-results-item.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchResultsItemComponent } from './components/search-results-item/search-results-item.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DndModule } from 'ngx-drag-drop';
 

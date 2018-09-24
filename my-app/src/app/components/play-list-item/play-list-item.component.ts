@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, Input, ChangeDetectionStrategy } from '@angular/core';
-import * as M from '../models';
-import { PlaylistService } from '../playlist.service';
-import { UserService } from '../user.service';
-import { DragAndDropService } from '../services/drag-and-drop.service';
+import * as M from '../../models';
+import { PlaylistService } from '../../services/playlist/playlist.service';
+import { UserService } from '../../services/user/user.service';
+import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
 @Component({
   selector: 'app-play-list-item',
   templateUrl: './play-list-item.component.html',

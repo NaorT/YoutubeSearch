@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { UserService } from '../user.service';
-import * as M from '../models';
+import { UserService } from '../../services/user/user.service';
+import * as M from '../../models';
 import { Observable } from 'rxjs';
-import { PlaylistService } from '../playlist.service';
+import { PlaylistService } from '../../services/playlist/playlist.service';
 
 @Component({
   selector: 'app-play-lists',
