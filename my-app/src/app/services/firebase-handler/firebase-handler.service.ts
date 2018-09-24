@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import * as M from './models';
+import * as M from '../../models';
 import { Observable } from 'rxjs';
 import {
   AngularFirestore,
