@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './local-storage.service';
-import * as M from './models';
-import { Playlist } from './models';
+import { LocalStorageService } from '../local-storage/local-storage.service';
+import * as M from '../../models';
 const uuidv1 = require('uuid/v1');
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {YOUTUBE_API_KEY} from './keys';
+import {YOUTUBE_API_KEY} from '../../keys';
 
 @Injectable({
   providedIn: 'root'
