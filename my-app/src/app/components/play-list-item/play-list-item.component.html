@@ -10,9 +10,15 @@
           </i>
    </div>
    <div class="row" *ngFor="let video of playlist.videos">
-     
+      
       <div class="col-xs-4">
-        <app-search-results-item [dragable]="true" [video]="video"></app-search-results-item>
+          <div id="yt-player"></div>
+          <!-- 
+          <youtube-player 
+          videoId="ZWJH7JQCjLM" 
+          (ready)="savePlayer($event)"
+          (change)="onStateChange($event)">
+        </youtube-player> -->
       </div> 
     </div>
  

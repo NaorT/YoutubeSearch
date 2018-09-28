@@ -24,9 +24,7 @@ export class AppContainerComponent implements OnInit {
     this.userService.initUserData();
   }
   joinPlaylist($event) {
-    this.playlistService.addUserToListeners($event , this.userService.getCurrentUser().id).subscribe(o => {
-      console.log('great');
-    });
+    this.playlistService.addUserToListeners($event , this.userService.getCurrentUser().id).subscribe(o => {});
     // this.youtubeService.joinPlaylist(event).
   }
 

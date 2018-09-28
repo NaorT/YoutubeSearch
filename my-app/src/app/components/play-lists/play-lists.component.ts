@@ -20,7 +20,6 @@ export class PlayListsComponent implements OnInit {
 
   ngOnInit() {
     this.getPlaylist();
-
   }
   private getPlaylist(): void {
     this.playlists = this.playlistService.getItemObserver(
