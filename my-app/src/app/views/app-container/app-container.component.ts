@@ -12,7 +12,6 @@ import * as M from '../../models';
 
 export class AppContainerComponent implements OnInit {
   searchResults: M.YoutubeSearchResult[];
-  player: YT.Player;
 
   constructor(
     private userService: UserService,
@@ -24,10 +23,7 @@ export class AppContainerComponent implements OnInit {
     this.userService.initUserData();
   }
   joinPlaylist($event) {
-    this.playlistService.addUserToListeners($event , this.userService.getCurrentUser().id).subscribe(o => {
-      console.log('great');
-    });
-    // this.youtubeService.joinPlaylist(event).
+    this.playlistService.addUserToListeners($event , this.userService.getCurrentUser().id).subscribe(o => {});
   }
 
   searchVideos($event) {

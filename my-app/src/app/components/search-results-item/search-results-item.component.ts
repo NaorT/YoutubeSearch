@@ -47,7 +47,6 @@ export class SearchResultsItemComponent implements OnInit {
     this.playlistService.addVideoTolist(list);
     }
   }
- 
 
   flipCard() {
     this.flipDiv = true;

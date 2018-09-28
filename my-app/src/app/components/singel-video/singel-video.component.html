@@ -1,0 +1,11 @@
+<div class="played-video-container" #container >
+  <div *ngIf="currentVideo">
+        <ngx-y2-player
+          #video
+          [playerOptions]="playerOptions"
+          [container]="container"
+          (change)="onStateChange($event)"
+          >
+        </ngx-y2-player>
+      </div>
+    </div>

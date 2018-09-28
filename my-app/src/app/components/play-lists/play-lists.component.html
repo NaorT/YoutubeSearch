@@ -1,3 +1,4 @@
+
 <div class="playlist-container" *ngIf="playlists">
   <mat-tab-group selectedIndex="2">
     <mat-tab  *ngFor="let tab of playlists | async" [label]="tab.name">
@@ -7,8 +8,8 @@
               <div class="tab-line"></div>
         </div>
       </div>
-      
-      <app-play-list-item  [playlist]="tab"></app-play-list-item>
+          <app-play-list-item (videoClicked)="playVideo($event)" [playlist]="tab"></app-play-list-item>
+
     
     </mat-tab>
 

@@ -1,24 +1,38 @@
-import { Component, OnInit, Output, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angular/core';
 import * as M from '../../models';
 import { PlaylistService } from '../../services/playlist/playlist.service';
 import { UserService } from '../../services/user/user.service';
 import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
+import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs';
+import { FirebaseHandlerService } from '../../services/firebase-handler/firebase-handler.service';
+
+const _window: any = window;
+
 @Component({
   selector: 'app-play-list-item',
   templateUrl: './play-list-item.component.html',
-  styleUrls: ['./play-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./play-list-item.component.scss']
 })
-export class PlayListItemComponent implements OnInit {
+export class PlayListItemComponent implements OnInit, OnDestroy {
   @Input() playlist: M.Playlist;
-  player: YT.Player;
+  @Output() videoClicked: EventEmitter<M.YoutubeSearchResult> = new EventEmitter<M.YoutubeSearchResult>();
+  subs = new Subscription();
 
   constructor(private playlistService: PlaylistService,
               private userService: UserService,
-              private dragAndDropService: DragAndDropService) { }
+              private dragAndDropService: DragAndDropService,
+              private dragulaService: DragulaService) {}
 
   ngOnInit() {
+    this.subs.add(this.dragulaService.drop('VIDEOS')
+    .subscribe(({ name, el, target, source, sibling }) => {
 
+    })
+  );
+  }
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   removeTab(): void {
@@ -27,6 +41,7 @@ export class PlayListItemComponent implements OnInit {
 
   onDragover($event) {
   }
+
   onDrop($event) {
     if (this.playlistService.addVideoToLocallist(this.playlist , $event.data)) {
       this.playlistService.addVideoTolist(this.playlist);
@@ -34,12 +49,18 @@ export class PlayListItemComponent implements OnInit {
 
   }
 
-  savePlayer($event) {
-    this.playlist = $event;
+  playVideo(video) {
+    this.playlistService.setCurrentList(this.playlist);
+    this.playlistService.setVideoPlayed(video);
   }
 
-  onStateChange($event) {
+  deleteVideo(video) {
+    const videoPosition = this.playlist.videos.indexOf(video);
+    this.playlist.videos.splice(videoPosition, 1);
+    this.playlistService.addVideoTolist(this.playlist);
+    this.playlistService.setCurrentList(this.playlist);
 
   }
+
 
 }
