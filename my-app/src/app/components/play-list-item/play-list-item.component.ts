@@ -1,70 +1,38 @@
-import { Component, OnInit, Output, Input, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angular/core';
 import * as M from '../../models';
 import { PlaylistService } from '../../services/playlist/playlist.service';
 import { UserService } from '../../services/user/user.service';
 import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
-import reframe from 'reframe.js';
+import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs';
+import { FirebaseHandlerService } from '../../services/firebase-handler/firebase-handler.service';
 
 const _window: any = window;
 
 @Component({
   selector: 'app-play-list-item',
   templateUrl: './play-list-item.component.html',
-  styleUrls: ['./play-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./play-list-item.component.scss']
 })
-export class PlayListItemComponent implements OnInit, AfterContentInit {
+export class PlayListItemComponent implements OnInit, OnDestroy {
   @Input() playlist: M.Playlist;
-  // player: YT.Player;
-  public yt_player;
+  @Output() videoClicked: EventEmitter<M.YoutubeSearchResult> = new EventEmitter<M.YoutubeSearchResult>();
+  subs = new Subscription();
 
   constructor(private playlistService: PlaylistService,
               private userService: UserService,
-              private dragAndDropService: DragAndDropService) { }
+              private dragAndDropService: DragAndDropService,
+              private dragulaService: DragulaService) {}
 
   ngOnInit() {
+    this.subs.add(this.dragulaService.drop('VIDEOS')
+    .subscribe(({ name, el, target, source, sibling }) => {
+
+    })
+  );
   }
-
-  ngAfterContentInit() {
-    const doc = window.document;
-    const playerApi = doc.createElement('script');
-    playerApi.type = 'text/javascript';
-    playerApi.src = 'https://www.youtube.com/iframe_api';
-    doc.body.appendChild(playerApi);
-
-    this.createPlayer();
-  }
-
-  createPlayer(): void {
-    let interval = setInterval(() => {
-      if ((typeof _window.YT !== 'undefined') && _window.YT && _window.YT.Player) {
-        this.yt_player = new _window.YT.Player('yt-player', {
-          width: '440',
-          height: '250',
-          videoId: 'ZWJH7JQCjLM',
-          playerVars: {
-            iv_load_policy: '3',
-            rel: '0'
-          },
-          events: {
-            onStateChange: (ev) => {
-              console.log(12);
-            }
-          }
-        });
-        console.log(this.yt_player);
-        clearInterval(interval);
-      }
-    }, 100);
-  }
-
-  playVideo(): void {
-    if (!this.yt_player) {
-      return;
-    }
-    console.log(this.yt_player);
-    // this.yt_player.loadVideoById('ZWJH7JQCjLM');
- 
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   removeTab(): void {
@@ -73,6 +41,7 @@ export class PlayListItemComponent implements OnInit, AfterContentInit {
 
   onDragover($event) {
   }
+
   onDrop($event) {
     if (this.playlistService.addVideoToLocallist(this.playlist , $event.data)) {
       this.playlistService.addVideoTolist(this.playlist);
@@ -80,12 +49,18 @@ export class PlayListItemComponent implements OnInit, AfterContentInit {
 
   }
 
-  // savePlayer($event) {
-  //   this.playlist = $event;
-  // }
+  playVideo(video) {
+    this.playlistService.setCurrentList(this.playlist);
+    this.playlistService.setVideoPlayed(video);
+  }
 
-  // onStateChange($event) {
+  deleteVideo(video) {
+    const videoPosition = this.playlist.videos.indexOf(video);
+    this.playlist.videos.splice(videoPosition, 1);
+    this.playlistService.addVideoTolist(this.playlist);
+    this.playlistService.setCurrentList(this.playlist);
 
-  // }
+  }
+
 
 }

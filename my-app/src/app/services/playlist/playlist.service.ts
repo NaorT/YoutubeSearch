@@ -2,13 +2,45 @@ import { Injectable } from '@angular/core';
 import { FirebaseHandlerService } from '../firebase-handler/firebase-handler.service';
 import { Observable } from 'rxjs';
 import * as M from '../../models';
+import * as Rx from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlaylistService {
+  private currentPlayLIst: M.Playlist;
+  private playVideoObserver = new Rx.Subject();
 
   constructor(private firebaseService: FirebaseHandlerService) { }
+
+  getNextVideo(video: M.YoutubeSearchResult) {
+    const postition = this.currentPlayLIst.videos.indexOf(video) + 1;
+    this.setVideoPlayed(this.currentPlayLIst.videos[postition]);
+  }
+  updateList(list: M.Playlist) {
+    this.currentPlayLIst = list;
+  }
+
+  setCurrentList(list: M.Playlist): void  {
+    if (!this.currentPlayLIst) {
+       this.currentPlayLIst = list;
+       return;
+    }
+    if (this.currentPlayLIst.id !== list.id) {
+      this.currentPlayLIst = list;
+       return;
+    }
+  }
+
+  setVideoPlayed(video: M.YoutubeSearchResult) {
+    if (video) {
+     this.playVideoObserver.next(video);
+    }
+  }
+
+  subscribeToPlayVideo() {
+    return this.playVideoObserver;
+  }
 
   public getItemObserver(collectionName: M.CollectionName, qoury: string): Observable<any> {
     return this.firebaseService.getItemObserver(collectionName , qoury );

@@ -27,4 +27,5 @@ export class PlayListsComponent implements OnInit {
       this.userService.getCurrentUser().id
     );
   }
+  
 }

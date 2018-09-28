@@ -12,7 +12,6 @@ import * as M from '../../models';
 
 export class AppContainerComponent implements OnInit {
   searchResults: M.YoutubeSearchResult[];
-  player: YT.Player;
 
   constructor(
     private userService: UserService,

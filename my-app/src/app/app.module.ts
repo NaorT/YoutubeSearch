@@ -34,13 +34,15 @@ import { FlipModule } from 'ngx-Flip';
 
 import { AddListTabComponent } from './components/add-list-tab/add-list-tab.component';
 import { AppContainerComponent } from './views/app-container/app-container.component';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { PlayListItemComponent } from './components/play-list-item/play-list-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { SearchResultsItemComponent } from './components/search-results-item/search-results-item.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DndModule } from 'ngx-drag-drop';
+import { NgxY2PlayerModule } from 'ngx-y2-player';
+import { SingelVideoComponent } from './components/singel-video/singel-video.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [
@@ -53,11 +55,12 @@ import { DndModule } from 'ngx-drag-drop';
     AppContainerComponent,
     PlayListItemComponent,
     SearchResultsComponent,
-    SearchResultsItemComponent
+    SearchResultsItemComponent,
+    SingelVideoComponent
   ],
   imports: [
-    YoutubePlayerModule,
-
+    NgxY2PlayerModule,
+    DragulaModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserModule,
