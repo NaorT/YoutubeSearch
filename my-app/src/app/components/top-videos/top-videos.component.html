@@ -3,8 +3,10 @@
         TOP FIVE {{country}}
     </div>
         <mat-list *ngIf="videos">
-            <div *ngFor="let vid of videos">
-                    <mat-list-item>Item 1</mat-list-item>
+            <div *ngFor="let video of videos">
+                    <mat-list-item>
+                        <app-top-video-item lass="row" [video]="video"></app-top-video-item>
+                    </mat-list-item>
                     <mat-divider></mat-divider>
             </div>
         </mat-list>

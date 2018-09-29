@@ -45,6 +45,7 @@ import { NgxY2PlayerModule } from 'ngx-y2-player';
 import { SingelVideoComponent } from './components/singel-video/singel-video.component';
 import { DragulaModule } from 'ng2-dragula';
 import { TopVideosComponent } from './components/top-videos/top-videos.component';
+import { TopVideoItemComponent } from './components/top-video-item/top-video-item.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { TopVideosComponent } from './components/top-videos/top-videos.component
     SearchResultsComponent,
     SearchResultsItemComponent,
     SingelVideoComponent,
-    TopVideosComponent
+    TopVideosComponent,
+    TopVideoItemComponent
   ],
   imports: [
     NgxY2PlayerModule,

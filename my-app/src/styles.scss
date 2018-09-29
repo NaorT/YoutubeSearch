@@ -92,6 +92,8 @@ app-site-header{
 }
 
 mat-horizontal-stepper.mat-stepper-horizontal{
+    margin-right: 150px;
+    margin-left: 150px;
     background-color: #F0F2F3;
 
     span.mat-step-icon-content.ng-star-inserted{
@@ -121,6 +123,9 @@ mat-horizontal-stepper.mat-stepper-horizontal.ng-tns-c18-1{
  margin-left: 150px;
 }
 
+mat-list.mat-list.ng-star-inserted{
+    padding: 0px
+}
 
 
 .gu-mirror {

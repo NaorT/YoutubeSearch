@@ -1,0 +1,22 @@
+<div   
+[dndDraggable]="draggable.data"
+[dndEffectAllowed]="draggable.effectAllowed"
+[dndDisableIf]="draggable.disable">
+<div class="row">
+   <div class="col-xs-3">
+      <img class="video-image" [src]="video.snippet.thumbnails.medium.url" mat-card-image alt="Photo of a Shiba Inu">
+  </div>
+  <div class="col-xs-7">
+    <div class="title">{{video.snippet.title| slice:0:20}}</div>
+    <div class="descriptoin">{{video.snippet.description| slice:0:90}}</div>
+  </div>
+  <div class="col-xs-2 add-video-container">
+      <mat-card-actions>
+          <button mat-fab color="warn" [matMenuTriggerFor]="menu">ADD</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let list of playlists | async" (click)="addToList(list)">{{list.name}}</button>
+          </mat-menu>
+        </mat-card-actions>
+  </div>
+</div>
+</div>
