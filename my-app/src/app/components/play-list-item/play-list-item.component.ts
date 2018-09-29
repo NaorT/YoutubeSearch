@@ -5,7 +5,6 @@ import { UserService } from '../../services/user/user.service';
 import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 const _window: any = window;
 
