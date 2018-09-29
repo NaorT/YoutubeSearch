@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as M from '../../models';
 import * as Rx from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class PlaylistService {
   private playVideoObserver = new Rx.Subject();
   private autoplay = true;
 
-  constructor(private firebaseService: FirebaseHandlerService,
+  constructor(private userService: UserService,
+               private firebaseService: FirebaseHandlerService,
               private toastr: ToastrService) { }
   getAutoplay() {
     return this.autoplay;
@@ -83,11 +85,7 @@ export class PlaylistService {
   public removeUserFromList(playlist: M.Playlist, userId: string): Observable<void> {
     return new Observable((o) => {
       playlist.listeners.splice(playlist.listeners.indexOf(userId), 1);
-      if (playlist.listeners.length <= 0 ) {
-        this.firebaseService.deleteList(playlist.id);
-      } else {
-          this.firebaseService.editPlaylist(playlist.id , playlist);
-        }
+      this.firebaseService.editPlaylist(playlist.id , playlist);
       o.next();
       o.complete();
     });
@@ -106,6 +104,12 @@ export class PlaylistService {
     }
     list.videos.push(video);
     return true;
+  }
+
+
+  public getExploreLists(): Observable<M.Playlist[]> {
+    const userId = this.userService.getCurrentUser().id;
+      return this.firebaseService.getExploreLists(userId);
   }
 
 }
