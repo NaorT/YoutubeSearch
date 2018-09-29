@@ -6,6 +6,12 @@
     }
 }
 
+.add-songs-box.text-center.col-xs-4.col-xs-offset-4{
+    overflow: auto;
+    .mat-list-item{
+        margin-top: 40px
+    }
+}
 .drag-active{
     position: absolute;
     width: 100%;

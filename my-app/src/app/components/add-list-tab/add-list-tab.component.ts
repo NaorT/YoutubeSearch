@@ -63,7 +63,7 @@ export class AddListTabComponent implements OnInit {
           this.playlist.created_by_id = this.userService.getCurrentUser().id;
           this.playlist.listeners.push(this.userService.getCurrentUser().id);
           this.playlist.id = uuidv1();
-          // this.playlist.isEditeable = this.checkBox.toLowerCase() === 'yes';
+          this.playlist.isEditeable = this.checkBox.toLowerCase() === 'yes';
           this.playlistService.setItem(
             M.CollectionName.playlist,
             this.playlist
