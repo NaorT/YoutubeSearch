@@ -40,9 +40,12 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
   }
 
   onDrop($event) {
+    if (!$event.data.id.videoId) {
+      $event.data.id = {kind: '', videoId: $event.data.id};
+    }
     if (this.playlistService.addVideoToLocallist(this.playlist , $event.data)) {
       this.playlistService.addVideoTolist(this.playlist);
-    } 
+    }
   }
 
   playVideo(video) {

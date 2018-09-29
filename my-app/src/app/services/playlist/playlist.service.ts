@@ -108,12 +108,14 @@ export class PlaylistService {
   }
 
   public addVideoToLocallist(list: M.Playlist, video: M.YoutubeSearchResult): boolean {
+
     for (const listVideo of list.videos) {
       if (listVideo.id.videoId === video.id.videoId) {
       this.toastr.error('Video already in list');
         return false;
       }
     }
+
     list.videos.push(video);
     return true;
   }
