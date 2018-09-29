@@ -36,6 +36,7 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
     this.playlistService.removeUserFromList(this.playlist, this.userService.getCurrentUser().id).subscribe();
   }
 
+  
   onDragover($event) {
   }
 
