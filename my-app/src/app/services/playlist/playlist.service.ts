@@ -96,8 +96,9 @@ export class PlaylistService {
   }
 
   public addVideoToLocallist(list: M.Playlist, video: M.YoutubeSearchResult): boolean {
+    const videoId = video.id.videoId || video.id;
     for (const listVideo of list.videos) {
-      if (listVideo.id.videoId === video.id.videoId) {
+      if (listVideo.id.videoId === videoId) {
         return false;
       }
     }

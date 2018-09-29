@@ -21,7 +21,6 @@ export class TopVideosComponent implements OnInit {
   ngOnInit() {
     this.country = this.getCountry();
     this.youtubeService.getTopFive(this.regionCode).subscribe((videos: M.YoutubeSearchResult) => {
-      console.log(videos);
       this.videos = videos;
     });
   }
@@ -30,6 +29,7 @@ export class TopVideosComponent implements OnInit {
     switch (this.regionCode.toLocaleUpperCase()) {
       case 'US' : return 'UNITED STATES';
       case 'IL' : return 'ISRAEL';
+      case 'GB' : return 'UNITED KINGDOM';
     }
   }
 
