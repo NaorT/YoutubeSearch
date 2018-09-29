@@ -5,7 +5,6 @@ import { UserService } from '../../services/user/user.service';
 import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
-import { FirebaseHandlerService } from '../../services/firebase-handler/firebase-handler.service';
 
 const _window: any = window;
 
@@ -27,6 +26,7 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.add(this.dragulaService.drop('VIDEOS')
     .subscribe(({ name, el, target, source, sibling }) => {
+      this.playlistService.addVideoTolist(this.playlist);
 
     })
   );
@@ -60,6 +60,12 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
     this.playlistService.addVideoTolist(this.playlist);
     this.playlistService.setCurrentList(this.playlist);
 
+  }
+  checkIfAutoPlay() {
+    return this.playlistService.getAutoplay();
+  }
+  toggleChange() {
+    this.playlistService.toggleChange();
   }
 
 

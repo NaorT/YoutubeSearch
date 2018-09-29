@@ -17,7 +17,9 @@ export class YoutubeService {
   public searchVideos(searchText: string): Observable<any> {
      return this.net.searchVideo(searchText);
   }
-
+  public getTopFive(regionCode: string) {
+    return this.net.getTopFive(regionCode);
+  }
 
 }
 

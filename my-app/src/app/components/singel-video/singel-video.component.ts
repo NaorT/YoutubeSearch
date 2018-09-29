@@ -16,6 +16,10 @@ export class SingelVideoComponent implements OnInit {
   constructor(private playlistService: PlaylistService) {}
   ngOnInit() {
     this.playlistService.subscribeToPlayVideo().subscribe((video: M.YoutubeSearchResult) => {
+      if (!video) {
+        this.currentVideo = video;
+        return;
+      }
       if (this.currentVideo && this.currentVideo.id === video.id) {
         return;
       }
@@ -23,7 +27,7 @@ export class SingelVideoComponent implements OnInit {
     });
   }
 
-  
+
   setVideo(video: M.YoutubeSearchResult) {
     this.currentVideo = undefined;
     setTimeout(() => {
