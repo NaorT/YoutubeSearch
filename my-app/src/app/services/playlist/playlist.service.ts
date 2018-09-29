@@ -3,6 +3,7 @@ import { FirebaseHandlerService } from '../firebase-handler/firebase-handler.ser
 import { Observable } from 'rxjs';
 import * as M from '../../models';
 import * as Rx from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class PlaylistService {
   private playVideoObserver = new Rx.Subject();
   private autoplay = true;
 
-  constructor(private firebaseService: FirebaseHandlerService) { }
+  constructor(private firebaseService: FirebaseHandlerService,
+              private toastr: ToastrService) { }
   getAutoplay() {
     return this.autoplay;
   }
@@ -96,9 +98,9 @@ export class PlaylistService {
   }
 
   public addVideoToLocallist(list: M.Playlist, video: M.YoutubeSearchResult): boolean {
-    const videoId = video.id.videoId || video.id;
     for (const listVideo of list.videos) {
-      if (listVideo.id.videoId === videoId) {
+      if (listVideo.id.videoId === video.id.videoId) {
+      this.toastr.error('Video already in list');
         return false;
       }
     }

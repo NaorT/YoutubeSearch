@@ -46,6 +46,8 @@ import { SingelVideoComponent } from './components/singel-video/singel-video.com
 import { DragulaModule } from 'ng2-dragula';
 import { TopVideosComponent } from './components/top-videos/top-videos.component';
 import { TopVideoItemComponent } from './components/top-video-item/top-video-item.component';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { TopVideoItemComponent } from './components/top-video-item/top-video-ite
     TopVideoItemComponent
   ],
   imports: [
+    CommonModule,
+    ToastrModule.forRoot(),
     NgxY2PlayerModule,
     DragulaModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

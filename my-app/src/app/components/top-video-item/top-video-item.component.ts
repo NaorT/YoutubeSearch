@@ -36,6 +36,7 @@ export class TopVideoItemComponent implements OnInit {
   }
 
   addToList(list: M.Playlist) {
+    this.video.id = {videoId: <any>this.video.id , kind : ''};
     if (this.playlistService.addVideoToLocallist(list , this.video)) {
     this.playlistService.addVideoTolist(list);
     }
