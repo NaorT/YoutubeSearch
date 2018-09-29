@@ -11,7 +11,7 @@
     <div class="descriptoin">{{video.snippet.description| slice:0:90}}</div>
   </div>
   <div class="col-xs-2 add-video-container">
-      <mat-card-actions>
+      <mat-card-actions *ngIf="!formMode">
           <button mat-fab color="warn" [matMenuTriggerFor]="menu">ADD</button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item *ngFor="let list of playlists | async" (click)="addToList(list)">{{list.name}}</button>
