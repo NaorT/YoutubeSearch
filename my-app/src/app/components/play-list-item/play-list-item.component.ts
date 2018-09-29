@@ -2,11 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angu
 import * as M from '../../models';
 import { PlaylistService } from '../../services/playlist/playlist.service';
 import { UserService } from '../../services/user/user.service';
-import { DragAndDropService } from '../../services/drag-and-drop/drag-and-drop.service';
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
-
-const _window: any = window;
 
 @Component({
   selector: 'app-play-list-item',
@@ -20,8 +17,8 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
 
   constructor(private playlistService: PlaylistService,
               private userService: UserService,
-              private dragAndDropService: DragAndDropService,
-              private dragulaService: DragulaService) {}
+              private dragulaService: DragulaService,
+              ) {}
 
   ngOnInit() {
     this.subs.add(this.dragulaService.drop('VIDEOS')
@@ -45,8 +42,7 @@ export class PlayListItemComponent implements OnInit, OnDestroy {
   onDrop($event) {
     if (this.playlistService.addVideoToLocallist(this.playlist , $event.data)) {
       this.playlistService.addVideoTolist(this.playlist);
-    }
-
+    } 
   }
 
   playVideo(video) {
