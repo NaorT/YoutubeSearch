@@ -1,6 +1,6 @@
 
 <div class="playlist-container" *ngIf="playlists">
-  <mat-tab-group selectedIndex="2">
+  <mat-tab-group >
     <mat-tab  *ngFor="let tab of playlists | async" [label]="tab.name">
       <div></div>
       <div class="tab-contianer" >

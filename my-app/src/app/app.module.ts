@@ -20,11 +20,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
+import { MatListModule } from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { VideoSerachResultsComponent } from './components/video-serach-results/video-serach-results.component';
 import { JoinListPopupComponent } from './components/join-list-popup/join-list-popup.component';
-
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -43,6 +44,7 @@ import { DndModule } from 'ngx-drag-drop';
 import { NgxY2PlayerModule } from 'ngx-y2-player';
 import { SingelVideoComponent } from './components/singel-video/singel-video.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TopVideosComponent } from './components/top-videos/top-videos.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { DragulaModule } from 'ng2-dragula';
     PlayListItemComponent,
     SearchResultsComponent,
     SearchResultsItemComponent,
-    SingelVideoComponent
+    SingelVideoComponent,
+    TopVideosComponent
   ],
   imports: [
     NgxY2PlayerModule,
@@ -86,6 +89,8 @@ import { DragulaModule } from 'ng2-dragula';
     MatRadioModule,
     MatCardModule,
     MatMenuModule,
+    MatListModule,
+    MatSlideToggleModule,
   ],
   entryComponents: [
     JoinListPopupComponent,

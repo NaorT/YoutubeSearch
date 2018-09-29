@@ -45,7 +45,8 @@
 
 
 .images{
-    margin-top: 15px;
+    margin: 0px;
+    margin-top: 10px;
 }
 
 .images {
@@ -77,6 +78,13 @@
         font-size:70px;
     }
 } 
+.details{
+    text-align: center;
+    &.delete{
+        margin-top: 5px;
+    }
+}
+
 
 @keyframes background-opacity {
     from {

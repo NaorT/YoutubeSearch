@@ -10,13 +10,24 @@ import * as Rx from 'rxjs';
 export class PlaylistService {
   private currentPlayLIst: M.Playlist;
   private playVideoObserver = new Rx.Subject();
+  private autoplay = true;
 
   constructor(private firebaseService: FirebaseHandlerService) { }
+  getAutoplay() {
+    return this.autoplay;
+  }
+  toggleChange() {
+    this.autoplay = !this.autoplay;
+  }
 
   getNextVideo(video: M.YoutubeSearchResult) {
+    if  (this.autoplay) {
     const postition = this.currentPlayLIst.videos.indexOf(video) + 1;
     this.setVideoPlayed(this.currentPlayLIst.videos[postition]);
+    }
+    this.setVideoPlayed(undefined);
   }
+
   updateList(list: M.Playlist) {
     this.currentPlayLIst = list;
   }
@@ -33,9 +44,7 @@ export class PlaylistService {
   }
 
   setVideoPlayed(video: M.YoutubeSearchResult) {
-    if (video) {
      this.playVideoObserver.next(video);
-    }
   }
 
   subscribeToPlayVideo() {

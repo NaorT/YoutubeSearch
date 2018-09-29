@@ -29,8 +29,7 @@ export class AppContainerComponent implements OnInit {
   searchVideos($event) {
     if ($event) {
         this.youtubeService.searchVideos($event).subscribe((results: M.YoutubeSearchResult[]) => {
-          console.log(results['items']);
-          this.searchResults = results['items'];
+          this.searchResults = results;
         });
     } else {
       this.searchResults = undefined;
