@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as M from '../../models';
 import * as Rx from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class PlaylistService {
   private autoplay = true;
 
   constructor(private firebaseService: FirebaseHandlerService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private userService: UserService) { }
   getAutoplay() {
     return this.autoplay;
   }
@@ -94,7 +96,15 @@ export class PlaylistService {
   }
 
   public addVideoTolist(list: M.Playlist) {
-    this.firebaseService.editPlaylist(list.id , list);
+    if (!list.isEditeable) {
+      if (list.created_by_id === this.userService.getCurrentUser().id) {
+            this.firebaseService.editPlaylist(list.id , list);
+            return;
+      }
+      this.toastr.error('Only playlist creator can edit this playlist');
+    } else {
+      this.firebaseService.editPlaylist(list.id , list);
+    }
   }
 
   public addVideoToLocallist(list: M.Playlist, video: M.YoutubeSearchResult): boolean {
