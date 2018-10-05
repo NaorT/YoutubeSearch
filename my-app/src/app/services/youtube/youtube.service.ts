@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NetService } from '../net/net.service';
+import * as M from '../../models';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +22,7 @@ export class YoutubeService {
   public getTopFive(regionCode: string) {
     return this.net.getTopFive(regionCode);
   }
+
 
 }
 

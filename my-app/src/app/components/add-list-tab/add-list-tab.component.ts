@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as M from '../../models';
 import { UserService } from '../../services/user/user.service';
 import { PlaylistService } from '../../services/playlist/playlist.service';
-const uuidv1 = require('uuid/v1');
+import * as uuidv1 from 'uuid/v1';
 import { MatStepper } from '@angular/material';
 
 @Component({

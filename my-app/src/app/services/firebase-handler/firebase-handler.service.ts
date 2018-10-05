@@ -16,6 +16,10 @@ export class FirebaseHandlerService {
 
   constructor(private asf: AngularFirestore) {}
 
+  public getExploreLists(): Observable<any> {
+    return this.asf.collection('playlist', ref => ref.limit(20)).valueChanges();
+  }
+
   public getItemObserver(collectionName: M.CollectionName, id: string): Observable<any> {
     return this.asf.collection('playlist', ref => ref.where('listeners', 'array-contains', id)).valueChanges();
   }

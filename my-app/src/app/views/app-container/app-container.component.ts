@@ -22,6 +22,7 @@ export class AppContainerComponent implements OnInit {
   ngOnInit() {
     this.userService.initUserData();
   }
+  
   joinPlaylist($event) {
     this.playlistService.addUserToListeners($event , this.userService.getCurrentUser().id).subscribe(o => {});
   }

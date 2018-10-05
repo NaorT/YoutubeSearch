@@ -1,0 +1,23 @@
+.top-video{
+    text-align: center;
+    margin-top: 25px;
+}
+
+.title{
+    color: #C01A1A;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom: 5px solid #C01A1A;
+    margin-bottom: 15px;
+   
+}
+
+app-explore-playlist-item{
+    width: 100%
+}
+
+.explore{
+    mat-list-item{
+        height: 165px;
+    }
+}

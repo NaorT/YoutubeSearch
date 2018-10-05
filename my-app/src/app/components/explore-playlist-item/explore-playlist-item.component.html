@@ -1,0 +1,23 @@
+<div class="col-xs-12">
+    <div class="col-xs-4 details">
+        <div>Created by: {{list.created_by}}</div>
+        <div>genre: {{list.genre}}</div>
+      </div>
+      <div class="col-xs-4 details">
+         <div>Pin code : {{list.pin_code}}</div>
+       <div>listeners: {{list.listeners.length}}</div>
+      </div>
+      <div class="col-xs-4 details delete">
+         <div>
+       <button class="join-list-btn" mat-stroked-button [color]="'my-primary'" (click)="joinList()">JOIN LIST</button>
+     </div>
+ 
+      </div>
+</div>
+<div class="col-xs-12">
+    <drag-scroll [drag-scroll-y-disabled]="true">
+        <div class="img-container" drag-scroll-item *ngFor="let video of videos">
+          <img [src]="video.snippet.thumbnails.medium.url">
+        </div>
+    </drag-scroll> 
+</div>

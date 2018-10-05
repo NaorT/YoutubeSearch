@@ -1,8 +1,7 @@
 <div class="col-xs-12 search-result-container">
   <div class="row">
     <drag-scroll [drag-scroll-y-disabled]="true"	>
-      <div drag-scroll-item *ngFor="let video of searchResults; let index">
-      
+      <div drag-scroll-item *ngFor="let video of searchResults;">
         <app-search-results-item [video]="video"></app-search-results-item>
       </div>  </drag-scroll>    
   </div>

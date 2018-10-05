@@ -2,14 +2,15 @@
   <div class="row">
     <app-site-header (joinPlaylistClicked)="joinPlaylist($event)" (searchVideo)="searchVideos($event)" class="col-xs-12"></app-site-header>
   </div>
-  <div *ngIf="searchResults && searchResults.length > 0">
+  <div class="row search-results-container" *ngIf="searchResults && searchResults.length > 0">
     <app-search-results [searchResults]="searchResults"></app-search-results>
   </div>
   <div class="row">
-    <app-play-lists class="col-xs-12"></app-play-lists>
+    <app-play-lists></app-play-lists>
   </div>
-  <div class="top-video-container">
-      <div class="col-xs-3">
+  <div class="row top-video-container">
+
+      <div class="col-xs-3 first-div">
         <app-top-videos regionCode="IL"></app-top-videos>
       </div>
       <div class="col-xs-3">
@@ -18,7 +19,9 @@
       <div class="col-xs-3">
           <app-top-videos regionCode="GB"></app-top-videos>
         </div>
+    <div class="col-xs-9 first-div">
+      <app-explore-playlists></app-explore-playlists>
     </div>
-</div>
+  </div>
 
-<app-singel-video></app-singel-video>
+</div>

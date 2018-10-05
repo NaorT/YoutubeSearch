@@ -48,6 +48,8 @@ import { TopVideosComponent } from './components/top-videos/top-videos.component
 import { TopVideoItemComponent } from './components/top-video-item/top-video-item.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { ExplorePlaylistsComponent } from './components/explore-playlists/explore-playlists.component';
+import { ExplorePlaylistItemComponent } from './components/explore-playlist-item/explore-playlist-item.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { ToastrModule } from 'ngx-toastr';
     SearchResultsItemComponent,
     SingelVideoComponent,
     TopVideosComponent,
-    TopVideoItemComponent
+    TopVideoItemComponent,
+    ExplorePlaylistsComponent,
+    ExplorePlaylistItemComponent
   ],
   imports: [
     CommonModule,
