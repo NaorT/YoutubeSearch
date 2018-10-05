@@ -1,6 +1,11 @@
-.played-video-container{
+.played-video-container {
     position: fixed;
-    bottom: 0;
-    right: 0px;
+    right: 43%;
     z-index: 9999;
+    height: 0;
+    bottom: 0;
+    &.video-open {
+        bottom: 10px;
+    height: auto;
+    }
 }

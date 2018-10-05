@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as M from '../../models';
 import { UserService } from '../../services/user/user.service';
 import { PlaylistService } from '../../services/playlist/playlist.service';
-const uuidv1 = require('uuid/v1');
+import * as uuidv1 from 'uuid/v1';
 import { MatStepper } from '@angular/material';
 
 @Component({
@@ -63,7 +63,7 @@ export class AddListTabComponent implements OnInit {
           this.playlist.created_by_id = this.userService.getCurrentUser().id;
           this.playlist.listeners.push(this.userService.getCurrentUser().id);
           this.playlist.id = uuidv1();
-          // this.playlist.isEditeable = this.checkBox.toLowerCase() === 'yes';
+          this.playlist.isEditeable = this.checkBox.toLowerCase() === 'yes';
           this.playlistService.setItem(
             M.CollectionName.playlist,
             this.playlist

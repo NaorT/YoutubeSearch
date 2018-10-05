@@ -1,0 +1,46 @@
+.minimize {
+    mat-tab-group.mat-tab-group.mat-primary {
+        height: 65px;
+    }
+}
+
+.tab-component{
+	overflow: hidden;
+	transition: max-height 0.8s;
+	max-height: 420px;
+}
+
+.tab-component.minimize{
+	max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s;
+	
+}
+
+.video-title{
+        margin-left: 12px;
+    
+}
+.video-container{
+    height: 250px;
+}
+
+
+
+$primary-red :#C01A1A;
+.playlist-container-icon {
+    z-index: 100;
+    right: 35px;
+    position: fixed;
+    color: $primary-red;
+    cursor: pointer;
+    &.open {
+        bottom: 280px;
+    }
+    &.close {
+        bottom: 25px;
+    }
+}
+.close material-icons{
+
+}

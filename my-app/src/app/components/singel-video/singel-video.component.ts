@@ -12,7 +12,7 @@ export class SingelVideoComponent implements OnInit {
   currentVideo: M.YoutubeSearchResult;
   @ViewChild('video') video: NgxY2PlayerComponent;
   playerOptions: NgxY2PlayerOptions;
-
+  videoOpen = true;
   constructor(private playlistService: PlaylistService) {}
   ngOnInit() {
     this.playlistService.subscribeToPlayVideo().subscribe((video: M.YoutubeSearchResult) => {
@@ -24,6 +24,11 @@ export class SingelVideoComponent implements OnInit {
         return;
       }
         this.setVideo(video);
+    });
+
+
+    this.playlistService.subscribeToOpenVideo().subscribe((open: boolean) => {
+      this.videoOpen = open;
     });
   }
 

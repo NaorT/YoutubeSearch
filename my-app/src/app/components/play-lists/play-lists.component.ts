@@ -12,20 +12,55 @@ import { PlaylistService } from '../../services/playlist/playlist.service';
 })
 export class PlayListsComponent implements OnInit {
   selected = new FormControl(0);
-  playlists: Observable<M.Playlist[]>;
+  playlists: M.Playlist[];
+  isOpen = false;
+  playingVideo: M.YoutubeSearchResult;
+  playingVideoTitle = '';
+  playIsCurrntTab = false;
+  currentPlaylist: M.Playlist;
   constructor(
     private playlistService: PlaylistService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.getPlaylist();
+    this.playlistService
+      .subscribeToPlayVideo()
+      .subscribe((playingVideo: M.YoutubeSearchResult) => {
+          this.currentPlaylist = this.playlistService.getCurrentPlayLIst();
+          this.playingVideo = playingVideo;
+          this.playingVideoTitle = playingVideo.snippet.title;
+      });
   }
   private getPlaylist(): void {
-    this.playlists = this.playlistService.getItemObserver(
-      M.CollectionName.playlist,
-      this.userService.getCurrentUser().id
-    );
+    this.playlistService
+      .getItemObserver(
+        M.CollectionName.playlist,
+        this.userService.getCurrentUser().id
+      )
+      .subscribe(playlists => {
+        this.playlists = playlists;
+      });
   }
-  
+
+  toggleTabView() {
+    this.isOpen = !this.isOpen;
+    this.updateVideoDisplay();
+  }
+
+  tabChanged($event) {
+    this.playIsCurrntTab = $event.index === this.playlists.length + 1;
+    this.updateVideoDisplay();
+  }
+
+  updateVideoDisplay() {
+    let time = 300 ;
+    if (!this.playIsCurrntTab || !this.isOpen) {
+      time = 0;
+    }
+    setTimeout(() => {
+      this.playlistService.setVideoOpen(this.playIsCurrntTab && this.isOpen);
+    }, time);
+  }
 }

@@ -12,11 +12,16 @@ import { UserService } from '../user/user.service';
 export class PlaylistService {
   private currentPlayLIst: M.Playlist;
   private playVideoObserver = new Rx.Subject();
+  private videoOpenObserver = new Rx.Subject();
   private autoplay = true;
 
   constructor(private userService: UserService,
-               private firebaseService: FirebaseHandlerService,
+              private firebaseService: FirebaseHandlerService,
               private toastr: ToastrService) { }
+
+  getCurrentPlayLIst(): M.Playlist {
+    return this.currentPlayLIst;
+  }
   getAutoplay() {
     return this.autoplay;
   }
@@ -26,8 +31,14 @@ export class PlaylistService {
 
   getNextVideo(video: M.YoutubeSearchResult) {
     if  (this.autoplay) {
-    const postition = this.currentPlayLIst.videos.indexOf(video) + 1;
-    this.setVideoPlayed(this.currentPlayLIst.videos[postition]);
+      // for (let listVideo of this.currentPlayLIst.videos) {
+        for (let i = 0; i <= this.currentPlayLIst.videos.length; i++) {
+        if (video.id === this.currentPlayLIst.videos[i].id &&
+          this.currentPlayLIst.videos[i + 1]) {
+            this.setVideoPlayed(this.currentPlayLIst.videos[i + 1]);
+            return;
+        }
+      }
     }
     this.setVideoPlayed(undefined);
   }
@@ -49,6 +60,12 @@ export class PlaylistService {
 
   setVideoPlayed(video: M.YoutubeSearchResult) {
      this.playVideoObserver.next(video);
+  }
+  setVideoOpen(open: boolean) {
+    this.videoOpenObserver.next(open);
+ }
+  subscribeToOpenVideo() {
+    return this.videoOpenObserver;
   }
 
   subscribeToPlayVideo() {
@@ -74,6 +91,8 @@ export class PlaylistService {
         querySnapshot.forEach( (documentSnapshot) => {
           const data: M.Playlist = documentSnapshot.data();
           data.listeners.push(userId);
+          console.log(userId);
+          console.log(data);
           this.firebaseService.editPlaylist(data.id , data);
           o.next();
           o.complete();
@@ -108,8 +127,19 @@ export class PlaylistService {
 
 
   public getExploreLists(): Observable<M.Playlist[]> {
-    const userId = this.userService.getCurrentUser().id;
-      return this.firebaseService.getExploreLists(userId);
+    return new Observable ((o) => {
+      const userId = this.userService.getCurrentUser().id;
+      this.firebaseService.getExploreLists().subscribe((playlists: M.Playlist[]) => {
+        const explorePlaylist: M.Playlist[] = [];
+        for (const list of playlists) {
+          if (list.listeners.indexOf(userId) < 0 ) {
+            explorePlaylist.push(list);
+          }
+        }
+        o.next(explorePlaylist);
+        o.complete();
+      });
+    });
   }
 
 }

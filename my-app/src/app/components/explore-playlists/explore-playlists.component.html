@@ -2,12 +2,11 @@
     <div class="text-center title">
         EXPLORE PLAYLISTS
     </div>
-    <mat-list>
-        <div class="row" *ngFor="let list of expoleLists | async">
-            <mat-list-item>
+    <mat-list >
+        <div class="row" *ngFor="let list of expoleLists">
+            <mat-list-item *ngIf="list">
                 <app-explore-playlist-item [list]="list"></app-explore-playlist-item>
             </mat-list-item>
-
             <mat-divider></mat-divider>
         </div>
     </mat-list>

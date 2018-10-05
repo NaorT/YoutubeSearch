@@ -19,6 +19,7 @@ export interface User {
 export enum LocalStorageKey {
   user = 'user'
 }
+
 export enum CollectionName {
   playlist = 'playlist'
 }

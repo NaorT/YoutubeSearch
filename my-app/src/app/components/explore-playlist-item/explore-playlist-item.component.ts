@@ -12,7 +12,7 @@ export class ExplorePlaylistItemComponent implements OnInit {
   @Input() list: M.Playlist;
   videos: M.YoutubeSearchResult[];
   constructor(private playlistService: PlaylistService,
-              private userService:UserService) { }
+              private userService: UserService) { }
 
   ngOnInit() {
     this.init();
@@ -31,8 +31,9 @@ export class ExplorePlaylistItemComponent implements OnInit {
   }
 
   joinList() {
+    console.log(123);
     const userId = this.userService.getCurrentUser().id;
-    this.playlistService.addUserToListeners(this.list.pin_code , userId);
+    this.playlistService.addUserToListeners(this.list.pin_code , userId).subscribe(() => {});
   }
 
 }

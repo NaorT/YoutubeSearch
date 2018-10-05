@@ -1,25 +1,74 @@
-
-<div class="playlist-container" *ngIf="playlists">
-  <mat-tab-group >
-    <mat-tab  *ngFor="let tab of playlists | async" [label]="tab.name">
+<div class="playlist-container" *ngIf="playlists" [class.minimize]="!isOpen">
+  <mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab *ngFor="let tab of playlists" [label]="tab.name">
       <div></div>
-      <div class="tab-contianer" >
+      <div class="tab-contianer">
         <div class="tab-header">
-              <div class="tab-line"></div>
+          <div class="tab-line"></div>
         </div>
       </div>
-          <app-play-list-item (videoClicked)="playVideo($event)" [playlist]="tab"></app-play-list-item>
 
+      <div class="tab-component" [class.minimize]="!isOpen">
+        <app-play-list-item (videoClicked)="playVideo($event)" [playlist]="tab"></app-play-list-item>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab >
+        <ng-template mat-tab-label >
+            <mat-icon>add_circle_outline</mat-icon>
+          </ng-template>
+          
+      <div class="tab-contianer">
+        <div class="tab-header">
+          <div class="tab-line"></div>
+        </div>
+
+        <div class="tab-component" [class.minimize]="!isOpen">
+          <app-add-list-tab class="tab-component"></app-add-list-tab>
+        </div>
+
+      </div>
+    </mat-tab>
     
+
+    <mat-tab [disabled]="!playingVideoTitle">
+        <ng-template mat-tab-label>
+            <mat-icon>play_circle_outline</mat-icon>
+            <span class="video-title" *ngIf="playingVideoTitle">{{playingVideoTitle}}</span>
+          </ng-template>
+
+      <div class="tab-contianer">
+        <div class="tab-header">
+          <div class="tab-line"></div>
+        </div>
+
+        <div class="tab-component video-container" [class.minimize]="!isOpen">
+          <div class="col-xs-12" *ngIf="currentPlaylist">
+            <div class="col-xs-6">
+              <div>Name :{{currentPlaylist.name}}</div>
+              <div>Created by: {{currentPlaylist.created_by}}</div>
+              <div>Organization: {{currentPlaylist.organization}}</div>
+              <div>genre: {{currentPlaylist.genre}}</div>
+              <div>Pin code : {{currentPlaylist.pin_code}}</div>
+              <div>listeners: {{currentPlaylist.listeners.length}}</div>
+          </div>
+          <!-- <app-add-list-tab class="tab-component"></app-add-list-tab> -->
+        </div>
+
+      </div>
+    </div>
     </mat-tab>
 
-    <mat-tab   label="+">
-        <div class="tab-contianer">
-            <div class="tab-header">
-                  <div class="tab-line"></div>
-            </div>
-            <app-add-list-tab></app-add-list-tab>
-          </div>
-    </mat-tab>
+
   </mat-tab-group>
 </div>
+<app-singel-video></app-singel-video>
+
+<i class="playlist-container-icon close material-icons" [hidden]="isOpen" (click)="toggleTabView()" >
+  open_in_browser
+</i>
+
+<i class="material-icons playlist-container-icon open" [hidden]="!isOpen" (click)="toggleTabView()">
+  minimize
+</i>
