@@ -1,14 +1,14 @@
 <div class="add-list-form-container">
   <mat-horizontal-stepper linear #stepper>
-    <mat-step  [editable]="isEditable">
+    <mat-step [editable]="isEditable">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your Details</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Your Name" formControlName="firstCtrl" [(ngModel)]="playlist.created_by" >
+          <input matInput placeholder="Your Name" formControlName="firstCtrl" [(ngModel)]="playlist.created_by">
         </mat-form-field>
         <br />
         <mat-form-field>
-          <input matInput placeholder="Organization" formControlName="firstCtrl" [(ngModel)]="playlist.organization" >
+          <input matInput placeholder="Organization" formControlName="firstCtrl" [(ngModel)]="playlist.organization">
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -19,23 +19,23 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fill out Playlist Details</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Name" formControlName="secondCtrl" required [(ngModel)]="playlist.name" >
+          <input matInput placeholder="Name" formControlName="secondCtrl" required [(ngModel)]="playlist.name">
         </mat-form-field>
         <br />
 
         <mat-form-field>
-          <input matInput placeholder="Genre" formControlName="secondCtrl" required [(ngModel)]="playlist.genre" >
+          <input matInput placeholder="Genre" formControlName="secondCtrl" required [(ngModel)]="playlist.genre">
         </mat-form-field>
         <br />
 
-        <!-- Is Editeable for everyone ?
+        Is Editeable for everyone ?
         <br />
 
         <mat-radio-group [(ngModel)]="checkBox" formControlName="secondCtrl">
-          <mat-radio-button color="warn"   value="yes">YES</mat-radio-button>
+          <mat-radio-button color="warn" value="yes">YES</mat-radio-button>
           <br />
-          <mat-radio-button color="warn"  value="no">No</mat-radio-button>
-        </mat-radio-group> -->
+          <mat-radio-button color="warn" value="no">No</mat-radio-button>
+        </mat-radio-group>
 
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -47,24 +47,27 @@
       <ng-template matStepLabel>Done</ng-template>
       You are now done.
       <div class="add-songs-container row">
-      <div class="add-songs-box text-center col-xs-4 col-xs-offset-4" dndDropzone
-      (dndDragover)="onDragover($event)"
-      (dndDrop)="onDrop($event)">
-   
-   
-      <div  class="drag-active">
-         <i class="material-icons">
-             add_circle
-             </i>
-      </div>>
 
-        Now just drag your favorite videos and let the fun begin!
-        <div *ngFor="let video of playlist.videos">
-          {{video.snippet.title}}
+
+        <div class="add-songs-box text-center col-xs-4 col-xs-offset-4" dndDropzone (dndDragover)="onDragover($event)"
+          (dndDrop)="onDrop($event)">
+          Now just drag your favorite videos and let the fun begin!
+
+          <mat-list>
+            <div *ngFor="let video of playlist.videos">
+              <mat-list-item>
+                <app-top-video-item [formMode]="true" class="row" [video]="video"></app-top-video-item>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-list>
+          <div dndPlaceholderRef class="drag-active">
+            <i class="material-icons">
+              add_circle
+            </i>
+          </div>
         </div>
-
       </div>
-    </div>
       <div>
         <button mat-button (click)="savePlaylist(stepper)">Done!</button>
         <button mat-button (click)="stepper.reset()">Reset</button>

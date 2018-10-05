@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class TopVideoItemComponent implements OnInit {
   @Input() video: M.YoutubeSearchResult;
+  @Input() formMode = false;
   playlists: Observable<M.Playlist[]>;
   player: YT.Player;
   draggable = {

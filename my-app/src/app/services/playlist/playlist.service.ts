@@ -22,6 +22,7 @@ export class PlaylistService {
   getCurrentPlayLIst(): M.Playlist {
     return this.currentPlayLIst;
   }
+
   getAutoplay() {
     return this.autoplay;
   }
@@ -111,16 +112,26 @@ export class PlaylistService {
   }
 
   public addVideoTolist(list: M.Playlist) {
-    this.firebaseService.editPlaylist(list.id , list);
+    if (!list.isEditeable) {
+      if (list.created_by_id === this.userService.getCurrentUser().id) {
+            this.firebaseService.editPlaylist(list.id , list);
+            return;
+      }
+      this.toastr.error('Only playlist creator can edit this playlist');
+    } else {
+      this.firebaseService.editPlaylist(list.id , list);
+    }
   }
 
   public addVideoToLocallist(list: M.Playlist, video: M.YoutubeSearchResult): boolean {
+
     for (const listVideo of list.videos) {
       if (listVideo.id.videoId === video.id.videoId) {
       this.toastr.error('Video already in list');
         return false;
       }
     }
+
     list.videos.push(video);
     return true;
   }
